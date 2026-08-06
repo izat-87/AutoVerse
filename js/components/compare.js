@@ -76,7 +76,7 @@ window.AutoComponents = window.AutoComponents || {};
         '<div class="container compare-bar__inner">' +
           '<div class="compare-bar__items">' +
             compareCars.map(function (car) {
-              const img = window.AutoComponents.generateCarImage ? window.AutoComponents.generateCarImage(car, { width: 100, height: 60 }) : car.image;
+              const img = car.image || (window.AutoComponents.generateCarImage ? window.AutoComponents.generateCarImage(car, { width: 100, height: 60 }) : '');
               return (
                 '<div class="compare-bar__item" data-compare-item="' + car.id + '">' +
                   '<img src="' + img + '" alt="' + car.name + '" class="compare-bar__img" />' +
@@ -188,7 +188,7 @@ window.AutoComponents = window.AutoComponents || {};
                   compareCars.map(function (car) {
                     const brand = brands.find(function (b) { return b.id === car.brandId; });
                     const category = categories.find(function (c) { return c.id === car.category; });
-                    const img = window.AutoComponents.generateCarImage ? window.AutoComponents.generateCarImage(car, { width: 200, height: 120 }) : car.image;
+                    const img = car.image || (window.AutoComponents.generateCarImage ? window.AutoComponents.generateCarImage(car, { width: 200, height: 120 }) : '');
                     return (
                       '<th>' +
                         '<img src="' + img + '" alt="' + car.name + '" style="width:100%; border-radius:8px; margin-bottom:8px;" />' +
