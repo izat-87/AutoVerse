@@ -20,7 +20,7 @@ window.AutoComponents = window.AutoComponents || {};
     const badgeClass = window.AutoUtils.getAvailabilityBadge(car.availability);
 
     const horizontalClass = options.horizontal ? ' car-card--horizontal' : '';
-    const imgSrc = window.AutoComponents.generateCarImage ? window.AutoComponents.generateCarImage(car) : car.image;
+    const imgSrc = car.image || (window.AutoComponents.generateCarImage ? window.AutoComponents.generateCarImage(car) : "");
 
     return (
       '<article class="car-card' + horizontalClass + '" data-car-id="' + car.id + '" data-link="/car/' + car.id + '">' +
