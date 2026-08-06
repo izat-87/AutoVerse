@@ -119,7 +119,7 @@ window.AutoComponents = window.AutoComponents || {};
     // Card navigation
     container.querySelectorAll('.car-card[data-link]').forEach(function (card) {
       card.addEventListener('click', function (e) {
-        if (e.target.closest('[data-fav]')) return;
+        if (e.target.closest('[data-fav], [data-compare]')) return;
         const link = card.getAttribute('data-link');
         if (link) {
           window.location.hash = '#' + link;
