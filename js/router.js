@@ -194,8 +194,11 @@ window.AutoRouter = window.AutoRouter || {};
       route(path, params);
     });
 
-    // Handle data-link clicks
+    // Handle data-link clicks with capture so SPA routing works even if child elements stop propagation.
     document.addEventListener('click', function (e) {
+      // Avoid routing when user interacts with internal controls inside a card.
+      if (e.target.closest('[data-fav], [data-compare]')) return;
+
       const link = e.target.closest('[data-link]');
       if (link) {
         const href = link.getAttribute('data-link');
@@ -204,7 +207,7 @@ window.AutoRouter = window.AutoRouter || {};
           window.location.hash = '#' + href;
         }
       }
-    });
+    }, true);
 
     // Initial route
     const { path, params } = parseHash();
