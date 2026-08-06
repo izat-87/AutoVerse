@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AutoVerse — премиальный автомобильный портал. Исследуйте легендарные автомобили мира: гиперкары, суперкары, люксовые седаны. Истории, характеристики, цены, наличие." />
+  <meta name="keywords" content="автомобили, гиперкары, суперкары, Lamborghini, Ferrari, Bugatti, Porsche, цены, характеристики" />
+  <meta name="author" content="AutoVerse Media" />
+  <meta property="og:title" content="AutoVerse — автомобильный портал премиум-класса" />
+  <meta property="og:description" content="Исследуйте самые известные автомобили мира: истории, характеристики, цены и наличие." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0a0a0f" />
+  <title>AutoVerse — автомобильный портал премиум-класса</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏎️</text></svg>" />
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+  <div id="preloader" class="preloader">
+    <div class="preloader__logo">
+      <svg class="preloader__mark" viewBox="0 0 64 64" fill="none">
+        <path d="M6 38L22 30V16L32 8L42 16V30L58 38V52H6V38Z" fill="url(#pg)" />
+        <circle cx="32" cy="33" r="3" class="preloader__dot" />
+        <defs>
+          <linearGradient id="pg" x1="6" y1="8" x2="58" y2="52" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#FFB800" />
+            <stop offset="1" stop-color="#FF3D00" />
+          </linearGradient>
+        </defs>
+      </svg>
+      <span class="preloader__text">AUTOVERSE</span>
+    </div>
+    <div class="preloader__bar"><span></span></div>
+  </div>
+
+  <div id="cursor-glow" class="cursor-glow" aria-hidden="true"></div>
+
+  <header class="site-header" id="site-header">
+    <div class="container site-header__inner">
+      <a href="/" class="brand" data-link="/" aria-label="AutoVerse на главную">
+        <svg class="brand__mark" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <path d="M6 38L22 30V16L32 8L42 16V30L58 38V52H6V38Z" fill="url(#brandG)" />
+          <defs>
+            <linearGradient id="brandG" x1="6" y1="8" x2="58" y2="52" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#FFB800" />
+              <stop offset="1" stop-color="#FF3D00" />
+            </linearGradient>
+          </defs>
+        </svg>
+        <span class="brand__name">AUTO<span>VERSE</span></span>
+      </a>
+
+      <nav class="main-nav" id="main-nav" aria-label="Основная навигация">
+        <a href="/" class="main-nav__link" data-link="/">Главная</a>
+        <a href="/catalog" class="main-nav__link" data-link="/catalog">Каталог</a>
+        <a href="/categories" class="main-nav__link" data-link="/categories">Категории</a>
+        <a href="/brands" class="main-nav__link" data-link="/brands">Бренды</a>
+        <a href="/guides" class="main-nav__link" data-link="/guides">Гиды</a>
+        <a href="/news" class="main-nav__link" data-link="/news">Новости</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn js-search-toggle" id="search-toggle" aria-label="Открыть поиск">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M20 20L16.5 16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <a href="/favorites" class="icon-btn" data-link="/favorites" aria-label="Избранное">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 21C12 21 3 14.6 3 8.8C3 5.9 5.3 4 7.8 4C9.5 4 11 5 12 6.6C13 5 14.5 4 16.2 4C18.7 4 21 5.9 21 8.8C21 14.6 12 21 12 21Z" stroke="currentColor" stroke-width="2"/></svg>
+          <span class="icon-btn__badge" id="fav-count" hidden>0</span>
+        </a>
+        <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="search-overlay" id="search-overlay" aria-hidden="true">
+      <div class="container">
+        <div class="search-overlay__head">
+          <h2 class="search-overlay__title">Поиск по каталогу</h2>
+          <button class="icon-btn js-search-toggle" aria-label="Закрыть поиск">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+        <div class="search-box">
+          <svg viewBox="0 0 24 24" fill="none" class="search-box__icon"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M20 20L16.5 16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <input type="text" id="global-search" class="search-box__input" placeholder="Название, бренд, категория, страна…" autocomplete="off" />
+          <button class="btn btn--accent search-box__btn" id="global-search-btn">Найти</button>
+        </div>
+        <div id="search-suggestions" class="search-suggestions"></div>
+      </div>
+    </div>
+  </header>
+
+  <main id="app" class="app" tabindex="-1"></main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+        <div class="site-footer__col site-footer__col--brand">
+          <a href="/" class="brand brand--footer" data-link="/">
+            <svg class="brand__mark" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+              <path d="M6 38L22 30V16L32 8L42 16V30L58 38V52H6V38Z" fill="url(#brandGf)" />
+              <defs>
+                <linearGradient id="brandGf" x1="6" y1="8" x2="58" y2="52" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#FFB800" /><stop offset="1" stop-color="#FF3D00" />
+                </linearGradient>
+              </defs>
+            </svg>
+            <span class="brand__name">AUTO<span>VERSE</span></span>
+          </a>
+          <p class="site-footer__desc">Премиальный автомобильный портал. Исследуйте легендарные автомобили мира — их историю, технологии, цены и наличие.</p>
+        </div>
+        <div class="site-footer__col">
+          <h4 class="site-footer__title">Навигация</h4>
+          <a href="/" class="site-footer__link" data-link="/">Главная</a>
+          <a href="/catalog" class="site-footer__link" data-link="/catalog">Каталог</a>
+          <a href="/categories" class="site-footer__link" data-link="/categories">Категории</a>
+          <a href="/brands" class="site-footer__link" data-link="/brands">Бренды</a>
+          <a href="/favorites" class="site-footer__link" data-link="/favorites">Избранное</a>
+        </div>
+        <div class="site-footer__col">
+          <h4 class="site-footer__title">Разделы</h4>
+          <a href="/guides" class="site-footer__link" data-link="/guides">Гиды</a>
+          <a href="/guides/fastest" class="site-footer__link" data-link="/guides/fastest">Самые быстрые</a>
+          <a href="/guides/expensive" class="site-footer__link" data-link="/guides/expensive">Самые дорогие</a>
+          <a href="/guides/history" class="site-footer__link" data-link="/guides/history">История индустрии</a>
+          <a href="/news" class="site-footer__link" data-link="/news">Новости</a>
+        </div>
+        <div class="site-footer__col">
+          <h4 class="site-footer__title">Контакты</h4>
+          <a href="mailto:info@autoverse.media" class="site-footer__link">info@autoverse.media</a>
+          <div class="site-footer__social">
+            <a href="#" class="social-btn" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.6L18.9 19c-.2 1-.8 1.2-1.6.8l-4.5-3.3-2.2 2.1c-.2.2-.4.4-.9.4l.3-4.6L18.3 6c.4-.3-.1-.5-.6-.2L6.9 12.7l-4.4-1.4c-1-.3-1-1 .2-1.4L20.6 3.2c.8-.3 1.5.2 1.3 1.4z"/></svg></a>
+            <a href="#" class="social-btn" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg></a>
+            <a href="#" class="social-btn" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.8-.5-5.6c-.3-1-1-1.7-2-2C18.7 4 12 4 12 4s-6.7 0-8.5.4c-1 .3-1.7 1-2 2C1 8.2 1 12 1 12s0 3.8.5 5.6c.3 1 1 1.7 2 2C5.3 20 12 20 12 20s6.7 0 8.5-.4c1-.3 1.7-1 2-2 .5-1.8.5-5.6.5-5.6zM9.8 15.5v-7l6 3.5-6 3.5z"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <span>© 2026 AutoVerse Media. Все права защищены.</span>
+        <span>Сделано с <span class="site-footer__heart">♥</span> для ценителей автомобилей</span>
+      </div>
+    </div>
+  </footer>
+
+  <button class="to-top" id="to-top" aria-label="Наверх">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M12 19V5M5 12L12 5L19 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <script src="js/data/brands.js"></script>
+  <script src="js/data/categories.js"></script>
+  <script src="js/data/cars.js"></script>
+  <script src="js/data/guides.js"></script>
+  <script src="js/data/news.js"></script>
+  <script src="js/utils/format.js"></script>
+  <script src="js/utils/store.js"></script>
+  <script src="js/components/scrollReveal.js"></script>
+  <script src="js/components/header.js"></script>
+  <script src="js/components/carCard.js"></script>
+  <script src="js/components/filters.js"></script>
+  <script src="js/pages/home.js"></script>
+  <script src="js/pages/catalog.js"></script>
+  <script src="js/pages/carDetail.js"></script>
+  <script src="js/pages/categories.js"></script>
+  <script src="js/pages/brands.js"></script>
+  <script src="js/pages/guides.js"></script>
+  <script src="js/pages/news.js"></script>
+  <script src="js/pages/favorites.js"></script>
+  <script src="js/router.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
