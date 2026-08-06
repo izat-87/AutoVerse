@@ -1,4 +1,4 @@
-// Runtime patch: override all car images and galleries using brand/model Unsplash queries
+// Runtime patch: если у машины нет car.image / car.gallery, заполнить их запросами к Unsplash
 (function () {
   if (!window.AUTO_DATA || !Array.isArray(window.AUTO_DATA.cars)) return;
 
@@ -21,12 +21,17 @@
       var baseImg = 'https://source.unsplash.com/1200x800/?' + query + '&orientation=landscape';
       var baseGallery = 'https://source.unsplash.com/800x600/?' + query + '&orientation=landscape';
 
-      car.image = baseImg;
-      car.gallery = [
-        baseGallery + '&sig=1',
-        baseGallery + '&sig=2',
-        baseGallery + '&sig=3'
-      ];
+      if (!car.image) {
+        car.image = baseImg;
+      }
+
+      if (!Array.isArray(car.gallery) || car.gallery.length === 0) {
+        car.gallery = [
+          baseGallery + '&sig=1',
+          baseGallery + '&sig=2',
+          baseGallery + '&sig=3'
+        ];
+      }
     } catch (e) {
       // noop
     }
