@@ -20,11 +20,12 @@ window.AutoComponents = window.AutoComponents || {};
     const badgeClass = window.AutoUtils.getAvailabilityBadge(car.availability);
 
     const horizontalClass = options.horizontal ? ' car-card--horizontal' : '';
+    const imgSrc = window.AutoComponents.generateCarImage ? window.AutoComponents.generateCarImage(car) : car.image;
 
     return (
       '<article class="car-card' + horizontalClass + '" data-car-id="' + car.id + '" data-link="/car/' + car.id + '">' +
         '<div class="car-card__media">' +
-          '<img src="' + car.image + '" alt="' + car.name + '" class="car-card__img" loading="lazy" />' +
+          '<img src="' + imgSrc + '" alt="' + car.name + '" class="car-card__img" loading="lazy" />' +
           '<div class="car-card__badges">' +
             '<div class="car-card__badges-left">' +
               '<span class="badge ' + badgeClass + '">' + avail.icon + ' ' + avail.label.replace(/^[^\s]+\s/, '') + '</span>' +
@@ -57,7 +58,10 @@ window.AutoComponents = window.AutoComponents || {};
           '</div>' +
           '<div class="car-card__price">' +
             '<div class="car-card__price-value">' + window.AutoUtils.formatUSD(car.price.usd) + ' <span>USD</span></div>' +
-            '<span class="badge badge--glass">' + (category ? category.name : '') + '</span>' +
+            '<div style="display:flex; gap:0.4rem; align-items:center;">' +
+              '<button class="car-card__compare" data-compare="' + car.id + '" aria-label="Сравнить" title="Сравнить">⚖️</button>' +
+              '<span class="badge badge--glass">' + (category ? category.name : '') + '</span>' +
+            '</div>' +
           '</div>' +
         '</div>' +
       '</article>'
@@ -70,6 +74,27 @@ window.AutoComponents = window.AutoComponents || {};
    */
   C.initCarCards = function (container) {
     if (!container) return;
+
+    // Compare buttons
+    container.querySelectorAll('[data-compare]').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        const carId = btn.getAttribute('data-compare');
+        const added = window.AutoComponents.toggleCompare(carId);
+        if (added) {
+          window.AutoComponents.showToast('Добавлено в сравнение', 'success');
+        } else {
+          window.AutoComponents.showToast('Убрано из сравнения');
+        }
+        // Refresh compare bar
+        const compareBar = document.getElementById('compare-bar');
+        if (compareBar) {
+          compareBar.outerHTML = window.AutoComponents.renderCompareBar();
+          const newBar = document.getElementById('compare-bar');
+          if (newBar) window.AutoComponents.initCompareBar(newBar);
+        }
+      });
+    });
 
     // Favorite buttons
     container.querySelectorAll('[data-fav]').forEach(function (btn) {

@@ -16,6 +16,11 @@ window.AutoPages = window.AutoPages || {};
 
     // Featured car for hero
     const heroCar = cars.find(function (c) { return c.id === 'bugatti-chiron'; }) || cars[0];
+    const heroImg = window.AutoComponents.generateCarImage ? window.AutoComponents.generateCarImage(heroCar, { width: 1600, height: 900 }) : heroCar.image;
+
+    // Featured showcase car
+    const showcaseCar = cars.find(function (c) { return c.id === 'lamborghini-aventador'; }) || cars[1];
+    const showcaseImg = window.AutoComponents.generateCarImage ? window.AutoComponents.generateCarImage(showcaseCar, { width: 1200, height: 600 }) : showcaseCar.image;
 
     // Popular cars (top by popularity)
     const popular = [...cars].sort(function (a, b) { return b.popularity - a.popularity; }).slice(0, 4);
@@ -35,15 +40,12 @@ window.AutoPages = window.AutoPages || {};
     // Legendary (classic)
     const legendary = cars.filter(function (c) { return c.category === 'classic'; }).slice(0, 4);
 
-    // Featured showcase car
-    const showcaseCar = cars.find(function (c) { return c.id === 'lamborghini-aventador'; }) || cars[1];
-
     return (
       '<div class="home-page">' +
         // Hero
         '<section class="home-hero">' +
           '<div class="home-hero__bg">' +
-            '<img src="' + heroCar.image + '" alt="' + heroCar.name + '" class="home-hero__bg-img" />' +
+            '<img src="' + heroImg + '" alt="' + heroCar.name + '" class="home-hero__bg-img" />' +
           '</div>' +
           '<div class="container">' +
             '<div class="home-hero__content">' +
@@ -110,7 +112,7 @@ window.AutoPages = window.AutoPages || {};
         '<section class="section section--alt">' +
           '<div class="container">' +
             '<div class="showcase" data-link="/car/' + showcaseCar.id + '" data-reveal="zoom">' +
-              '<div class="showcase__bg" style="background-image: url(\'' + showcaseCar.image + '\');"></div>' +
+              '<div class="showcase__bg" style="background-image: url(\'' + showcaseImg + '\');"></div>' +
               '<div class="showcase__content">' +
                 '<div class="showcase__brand">' + (brands.find(function (b) { return b.id === showcaseCar.brandId; }) || {}).name + '</div>' +
                 '<h2 class="showcase__name">' + showcaseCar.name + '</h2>' +

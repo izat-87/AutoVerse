@@ -95,6 +95,11 @@ window.AutoRouter = window.AutoRouter || {};
       html = window.AutoPages.renderNewsDetail(segments[1]);
       initFn = window.AutoPages.initNewsDetail;
     }
+    // Compare
+    else if (path === '/compare') {
+      html = window.AutoComponents.renderComparePage();
+      initFn = window.AutoComponents.initComparePage;
+    }
     // Favorites
     else if (path === '/favorites') {
       html = window.AutoPages.renderFavorites();
@@ -115,6 +120,17 @@ window.AutoRouter = window.AutoRouter || {};
     // Render
     if (app) {
       app.innerHTML = html;
+
+      // Append compare bar (not on compare page itself)
+      if (path !== '/compare') {
+        const compareBarHtml = window.AutoComponents.renderCompareBar();
+        if (compareBarHtml) {
+          app.insertAdjacentHTML('beforeend', compareBarHtml);
+          const compareBar = document.getElementById('compare-bar');
+          if (compareBar) window.AutoComponents.initCompareBar(compareBar);
+        }
+      }
+
       app.scrollTop = 0;
       window.scrollTo(0, 0);
 
@@ -161,7 +177,8 @@ window.AutoRouter = window.AutoRouter || {};
       '/brands': 'Производители — AutoVerse',
       '/guides': 'Автомобильные гиды — AutoVerse',
       '/news': 'Автомобильные новости — AutoVerse',
-      '/favorites': 'Избранное — AutoVerse'
+      '/favorites': 'Избранное — AutoVerse',
+      '/compare': 'Сравнение автомобилей — AutoVerse'
     };
 
     document.title = titles[path] || 'AutoVerse — автомобильный портал премиум-класса';

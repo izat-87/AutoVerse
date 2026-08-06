@@ -93,6 +93,26 @@
   fill: var(--danger);
 }
 
+.car-card__compare {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-glass);
+  border: 1px solid var(--border);
+  font-size: 0.8rem;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.car-card__compare:hover {
+  border-color: rgba(255, 184, 0, 0.4);
+  background: var(--accent-gradient-soft);
+  transform: scale(1.1);
+}
+
 .car-card__body {
   padding: var(--sp-md);
   display: flex;
@@ -1589,6 +1609,85 @@
 
 .newsletter__input::placeholder {
   color: var(--text-muted);
+}
+
+/* ============ Compare bar ============ */
+.compare-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-header);
+  background: rgba(12, 12, 18, 0.95);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-top: 1px solid var(--border-strong);
+  padding: 0.8rem 0;
+  box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.4);
+}
+
+.compare-bar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-md);
+  flex-wrap: wrap;
+}
+
+.compare-bar__items {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.compare-bar__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  background: var(--bg-glass);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+}
+
+.compare-bar__img {
+  width: 40px;
+  height: 24px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.compare-bar__name {
+  white-space: nowrap;
+}
+
+.compare-bar__remove {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-glass-strong);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.compare-bar__remove:hover {
+  color: var(--danger);
+  background: rgba(255, 92, 92, 0.15);
+}
+
+.compare-bar__actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
 }
 
 /* ============ CTA banner ============ */
