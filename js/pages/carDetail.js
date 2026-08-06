@@ -30,7 +30,7 @@ window.AutoPages = window.AutoPages || {};
 
     // Gallery
     const gallery = car.gallery || [car.image];
-    const heroImg = window.AutoComponents.generateCarImage ? window.AutoComponents.generateCarImage(car, { width: 1200, height: 600 }) : car.image;
+    const heroImg = car.image || (window.AutoComponents.generateCarImage ? window.AutoComponents.generateCarImage(car, { width: 1200, height: 600 }) : '');
 
     return (
       '<div class="car-detail">' +
@@ -46,7 +46,7 @@ window.AutoPages = window.AutoPages || {};
 
           // Hero
           '<div class="car-detail__hero">' +
-            '<img src="' + heroImg + '" alt="' + brand.name + ' ' + car.name + '" class="car-detail__hero-img" />' +
+            '<img src="' + heroImg + '" alt="' + (brand ? brand.name + ' ' : '') + car.name + '" class="car-detail__hero-img" />' +
             '<div class="car-detail__hero-content">' +
               '<div class="car-detail__hero-badges">' +
                 '<span class="badge ' + badgeClass + '">' + avail.icon + ' ' + avail.label.replace(/^[^\s]+\s/, '') + '</span>' +
@@ -75,7 +75,7 @@ window.AutoPages = window.AutoPages || {};
                 '<h2 class="car-detail__section-title">Галерея</h2>' +
                 '<div class="gallery" id="detail-gallery">' +
                   gallery.map(function (img, index) {
-                    const galleryImg = window.AutoComponents.generateCarImage ? window.AutoComponents.generateCarImage(car, { width: 800, height: 500 }) : img;
+                    const galleryImg = img || (window.AutoComponents.generateCarImage ? window.AutoComponents.generateCarImage(car, { width: 800, height: 500 }) : '');
                     return (
                       '<div class="gallery__item' + (index === 0 ? ' gallery__item--main' : '') + '" data-src="' + galleryImg + '">' +
                         '<img src="' + galleryImg + '" alt="' + car.name + ' фото ' + (index + 1) + '" class="gallery__img" loading="lazy" />' +
@@ -254,7 +254,7 @@ window.AutoPages = window.AutoPages || {};
             '</section>'
           ) : '') +
         '</div>' +
-      '</div>'
+      '</div>' +
     );
   };
 
